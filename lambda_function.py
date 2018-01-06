@@ -43,12 +43,12 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         'card': {
             'type': 'Simple',
             'title': "SessionSpeechlet - " + title,
-            'content': "SessionSpeechlet - " + output[0:8000]
+            'content': "SessionSpeechlet - " + output[0:7000]
         },
         'reprompt': {
             'outputSpeech': {
                 'type': 'PlainText',
-                'text': reprompt_text[0:8000]
+                'text': reprompt_text[0:7000]
             }
         },
         'shouldEndSession': should_end_session
@@ -92,7 +92,7 @@ def create_feed_attributes(feed):
 def get_feed(feedly_tag):
     feedly_userid = os.environ.get('FEEDLY_ID', None)
     feedly_token = os.environ.get('FEEDLY_TOKEN', None)
-    interval_days = int(os.environ.get('INTERVAL_MINUTE', '1'))
+    interval_days = int(os.environ.get('INTERVAL_DAYS', '1'))
     feed_count = int(os.environ.get('FEED_COUNT', '10'))
 
     interval_time = datetime.now() - timedelta(days=interval_days)
